@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grocery List - MealPrep App</title>
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='images/grocery.jpeg') }}");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      text-align: center;
+    }
+
+    ul {
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: orange;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background: darkorange;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Grocery List for Meal Plan: {{ mealplan.name }}</h2>
+    {% if grocery_items and grocery_items|length > 0 %}
+      <ul>
+        {% for ingredient, count in grocery_items.items() %}
+          <li>✔️ {{ ingredient.capitalize() }} (x{{ count }})</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p style="color: red;">No ingredients found. Please add recipes to this meal plan.</p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+  </div>
+</body>
+</html>

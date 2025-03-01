@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Meal Plan</title>
+  <style>
+    /* Background Image */
+    body {
+      background-image: url("{{ url_for('static', filename='images/meal_plan.webp') }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Form Container */
+    .container {
+      background: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    /* Labels */
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    /* Input Fields */
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    /* Submit Button */
+    button {
+      background-color: #ff9800;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #e68900;
+    }
+
+    /* Back to Dashboard Link */
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #ff9800;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Add a New Meal Plan</h1>
+    
+    <form method="POST">
+      {{ form.hidden_tag() }}
+
+      <label for="name">Meal Plan Name</label>
+      {{ form.name(id="name") }}
+      {% for error in form.name.errors %}
+        <p style="color: red;">{{ error }}</p>
+      {% endfor %}
+
+      <label for="date">Date</label>
+      {{ form.date(id="date") }}
+      {% for error in form.date.errors %}
+        <p style="color: red;">{{ error }}</p>
+      {% endfor %}
+
+      <br>
+      <button type="submit">{{ form.submit.label }}</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}">⬅ Back to Dashboard</a>
+  </div>
+</body>
+</html>

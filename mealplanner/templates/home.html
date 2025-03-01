@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - MealPrep App</title>
+</head>
+<body style="background-image: url('{{ url_for('static', filename='images/background.jpeg') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed; text-align: center;">
+
+  <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; margin: auto; margin-top: 100px;">
+    <h1>Welcome to MealPrep App</h1>
+    <a href="{{ url_for('login') }}" style="background: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 5px;">Login</a>
+    <a href="{{ url_for('register') }}" style="background: blue; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 5px;">Register</a>
+  </div>
+
+</body>
+</html>

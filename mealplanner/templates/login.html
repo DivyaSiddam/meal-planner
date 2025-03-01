@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - MealPrep App</title>
+</head>
+<body style="background-image: url('{{ url_for('static', filename='images/login.png') }}'); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed; display: flex; justify-content: center; align-items: center; height: 100vh;">
+
+  <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center;">
+    <h2>Login</h2>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      
+      <label for="username">Username</label><br>
+      {{ form.username(id="username") }}<br>
+      {% for error in form.username.errors %}
+        <span style="color: red;">{{ error }}</span><br>
+      {% endfor %}
+      
+      <label for="password">Password</label><br>
+      {{ form.password(id="password") }}<br>
+      {% for error in form.password.errors %}
+        <span style="color: red;">{{ error }}</span><br>
+      {% endfor %}
+      
+      <br>
+      <button type="submit" style="background: green; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Login</button>
+    </form>
+    
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Recipe</title>
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='images/recipe.webp') }}");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .btn {
+      background-color: #ff9800;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    select, input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Add a New Recipe</h1>
+
+    <form method="POST">
+      {{ form.hidden_tag() }}
+
+      <label for="name">Recipe Name</label>
+      {{ form.name(id="name") }}
+      {% for error in form.name.errors %}
+        <p style="color: red;">{{ error }}</p>
+      {% endfor %}
+
+      <label for="ingredients">Ingredients (comma-separated)</label>
+      {{ form.ingredients(id="ingredients") }}
+      {% for error in form.ingredients.errors %}
+        <p style="color: red;">{{ error }}</p>
+      {% endfor %}
+
+      <label for="instructions">Instructions</label>
+      {{ form.instructions(id="instructions") }}
+      {% for error in form.instructions.errors %}
+        <p style="color: red;">{{ error }}</p>
+      {% endfor %}
+
+      <label for="mealplan_id">Assign to Meal Plan</label>
+      <select name="mealplan_id" required>
+        {% for mealplan in mealplans %}
+          <option value="{{ mealplan.id }}">{{ mealplan.name }}</option>
+        {% endfor %}
+      </select>
+
+      <br>
+      <button type="submit">Add Recipe</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+  </div>
+</body>
+</html>

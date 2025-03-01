@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Plan Details - MealPrep App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Meal Plan: {{ mealplan.name }}</h2>
+    <p>Date: {{ mealplan.date }}</p>
+    <h3>Recipes Included:</h3>
+    {% if mealplan.recipes %}
+      <ul>
+        {% for recipe in mealplan.recipes %}
+          <li>{{ recipe.name }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No recipes added to this meal plan.</p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+  </div>
+</body>
+</html>
